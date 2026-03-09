@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sarah Geer | SK Geer Advisory Limited</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1a18;
+      --warm: #f7f4ef;
+      --mid: #9a9088;
+      --accent: #8b6f4e;
+      --rule: #ddd8d0;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--warm);
+      color: var(--ink);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── Header ── */
+    header {
+      padding: 3.5rem 0 2.5rem;
+      border-bottom: 1px solid var(--rule);
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards;
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .name {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(2rem, 5vw, 3rem);
+      letter-spacing: 0.02em;
+      line-height: 1.1;
+    }
+
+    .company {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    /* ── Nav ── */
+    nav {
+      padding: 1.2rem 0;
+      border-bottom: 1px solid var(--rule);
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.15s forwards;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    nav a {
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--ink); }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 5rem 0 4rem;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.3s forwards;
+    }
+
+    .hero-line {
+      display: block;
+      width: 2.5rem;
+      height: 1px;
+      background: var(--accent);
+      margin-bottom: 2rem;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      line-height: 1.4;
+      max-width: 620px;
+      margin-bottom: 1.8rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero p {
+      font-size: 0.95rem;
+      color: #4a4540;
+      max-width: 540px;
+      line-height: 1.85;
+    }
+
+    /* ── Sections ── */
+    section {
+      padding: 3.5rem 0;
+      border-top: 1px solid var(--rule);
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 1.8rem;
+    }
+
+    /* ── Expertise ── */
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem 3rem;
+    }
+
+    .expertise-item h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 1.15rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .expertise-item p {
+      font-size: 0.85rem;
+      color: #6a6058;
+      line-height: 1.7;
+    }
+
+    /* ── Background ── */
+    .background-text {
+      font-size: 0.95rem;
+      color: #4a4540;
+      max-width: 620px;
+      line-height: 1.9;
+    }
+
+    .credentials {
+      margin-top: 1.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .credential-tag {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid var(--rule);
+      padding: 0.35rem 0.8rem;
+      color: var(--mid);
+    }
+
+    /* ── Contact ── */
+    .contact-intro {
+      font-size: 0.95rem;
+      color: #4a4540;
+      margin-bottom: 2rem;
+      max-width: 480px;
+    }
+
+    form {
+      display: grid;
+      gap: 1.2rem;
+      max-width: 520px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 0.5rem;
+    }
+
+    input, textarea {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--rule);
+      padding: 0.5rem 0;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+    }
+
+    input:focus, textarea:focus {
+      border-bottom-color: var(--accent);
+    }
+
+    textarea { resize: none; height: 90px; }
+
+    .submit-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      background: none;
+      border: 1px solid var(--ink);
+      padding: 0.75rem 1.8rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      margin-top: 0.5rem;
+    }
+
+    .submit-btn:hover { background: var(--ink); color: var(--warm); }
+
+    .form-success {
+      display: none;
+      font-size: 0.9rem;
+      color: var(--accent);
+      padding: 1rem 0;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 2rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    footer p {
+      font-size: 0.75rem;
+      color: var(--mid);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── Animation ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    section:nth-of-type(1) { animation-delay: 0.45s; }
+    section:nth-of-type(2) { animation-delay: 0.55s; }
+    section:nth-of-type(3) { animation-delay: 0.65s; }
+
+    @media (max-width: 560px) {
+      .form-row { grid-template-columns: 1fr; }
+      .header-inner { flex-direction: column; gap: 0.3rem; }
+      nav ul { gap: 1.5rem; flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <div class="header-inner">
+      <span class="name">Sarah Geer</span>
+      <span class="company">SK Geer Advisory Limited</span>
+    </div>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#expertise">Expertise</a></li>
+      <li><a href="#background">Background</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero">
+    <span class="hero-line"></span>
+    <h1>Strategy consulting that turns <em>data into decisions</em></h1>
+    <p>Independent strategy advisor to FMCG, gaming, and EdTech businesses. Nearly two decades of experience spanning top-tier consulting and senior client-side roles — bringing rigour, commercial instinct, and a direct point of view.</p>
+  </div>
+
+  <section id="expertise">
+    <p class="section-label">Expertise</p>
+    <div class="expertise-grid">
+      <div class="expertise-item">
+        <h3>Market Assessment</h3>
+        <p>Market sizing, landscape mapping, and opportunity identification across international markets.</p>
+      </div>
+      <div class="expertise-item">
+        <h3>Portfolio Strategy</h3>
+        <p>Category growth, portfolio architecture, and innovation pipeline development.</p>
+      </div>
+      <div class="expertise-item">
+        <h3>Commercial Analytics</h3>
+        <p>Pricing strategy, competitive analysis, and evidence-based strategic recommendations.</p>
+      </div>
+      <div class="expertise-item">
+        <h3>Growth Strategy</h3>
+        <p>Where-to-play and how-to-win frameworks, vertical strategy, and entry assessment.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="background">
+    <p class="section-label">Background</p>
+    <p class="background-text">Sarah Geer is an independent strategy consultant with nearly two decades of experience. Her career spans seven years at L.E.K. Consulting, senior roles at SABMiller and ABInBev's global Category Expansion team, and eight years of independent practice. She works across FMCG, gaming, and EdTech — bringing a dual consultant and client-side perspective to every engagement.</p>
+    <div class="credentials">
+      <span class="credential-tag">L.E.K. Consulting</span>
+      <span class="credential-tag">SABMiller</span>
+      <span class="credential-tag">ABInBev</span>
+      <span class="credential-tag">FMCG</span>
+      <span class="credential-tag">Gaming</span>
+      <span class="credential-tag">EdTech</span>
+    </div>
+  </section>
+
+  <section id="contact">
+    <p class="section-label">Contact</p>
+    <p class="contact-intro">Available for project-based engagements and advisory relationships. Get in touch to discuss how we might work together.</p>
+    <form id="contactForm">
+      <div class="form-row">
+        <div>
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+      </div>
+      <div>
+        <label for="organisation">Organisation</label>
+        <input type="text" id="organisation" name="organisation">
+      </div>
+      <div>
+        <label for="message">Message</label>
+        <textarea id="message" name="message" required></textarea>
+      </div>
+      <button type="submit" class="submit-btn">Send enquiry &rarr;</button>
+    </form>
+    <p class="form-success" id="formSuccess">Thank you - your message has been sent. Sarah will be in touch shortly.</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 SK Geer Advisory Limited. Registered in England &amp; Wales.</p>
+    <p>sarahgeer.co.uk</p>
+  </footer>
+
+</div>
+
+<script>
+  // Simple contact form handler - replace action URL with your preferred form backend
+  // e.g. Formspree: https://formspree.io (free tier, no server needed)
+  const form = document.getElementById('contactForm');
+  const success = document.getElementById('formSuccess');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = form.querySelector('.submit-btn');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    // To activate: replace the action below with your Formspree endpoint
+    // e.g. https://formspree.io/f/YOUR_FORM_ID
+    const FORM_ACTION = 'https://formspree.io/f/YOUR_FORM_ID';
+
+    try {
+      const res = await fetch(FORM_ACTION, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form)
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        success.style.display = 'block';
+      } else {
+        // Fallback: open mailto
+        window.location.href = `mailto:sarah@sarahgeer.co.uk?subject=Enquiry from ${encodeURIComponent(form.name.value)}&body=${encodeURIComponent(form.message.value)}`;
+      }
+    } catch {
+      window.location.href = `mailto:sarah@sarahgeer.co.uk?subject=Enquiry&body=${encodeURIComponent(form.message.value)}`;
+    }
+  });
+</script>
+
+</body>
+</html>
